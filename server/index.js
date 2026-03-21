@@ -66,31 +66,27 @@ app.post('/api/analyze', async (req, res) => {
 })
 
 // Fonction qui analyse le certificat SSL
+const sslChecker = require('ssl-checker')
+
 const analyzeSSL = async (url) => {
   try {
     const hostname = new URL(url).hostname
-    const res = await axios.get(
-      `https://api.ssllabs.com/api/v3/analyze?host=${hostname}&startNew=on&all=done`,
-      { timeout: 15000 }
-    )
+    const data = await sslChecker(hostname)
 
-    const data = res.data
+    const daysLeft = data.daysRemaining
+    const valid = data.valid
 
-    // SSL Labs prend du temps, on retourne le statut
-    if (data.status === 'DNS' || data.status === 'IN_PROGRESS') {
-      return { status: 'pending', message: 'Analyse SSL en cours...' }
-    }
+    let grade = 'F'
+    let score = 0
 
-    if (data.status === 'READY') {
-      const endpoint = data.endpoints?.[0]
-      const grade = endpoint?.grade || 'N/A'
-      const score = gradeToScore(grade)
-      return { status: 'ready', grade, score }
-    }
+    if (valid && daysLeft > 60) { grade = 'A'; score = 90 }
+    else if (valid && daysLeft > 30) { grade = 'B'; score = 70 }
+    else if (valid && daysLeft > 0)  { grade = 'C'; score = 50 }
+    else { grade = 'F'; score = 0 }
 
-    return { status: 'error', grade: 'N/A', score: 0 }
+    return { status: 'ready', grade, score, daysLeft, valid }
   } catch (err) {
-    return { status: 'error', grade: 'N/A', score: 0 }
+    return { status: 'error', grade: 'N/A', score: 0, daysLeft: 0, valid: false }
   }
 }
 

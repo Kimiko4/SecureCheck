@@ -78,25 +78,27 @@ function App() {
           </div>
 
           {/* Score SSL */}
-          <div style={{
-            padding: '16px', borderRadius: '12px', marginBottom: '16px',
-            background: '#f0f4ff', border: '1px solid #a3bffa'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <div>
-                <div style={{ fontWeight: '600', color: '#333' }}>🔒 Certificat SSL</div>
-                <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
-                  {result.ssl.status === 'pending' ? 'Analyse en cours...' : `Grade : ${result.ssl.grade}`}
-                </div>
-              </div>
-              <div style={{
-                fontSize: '28px', fontWeight: '700',
-                color: result.ssl.score >= 70 ? '#276749' : result.ssl.score >= 40 ? '#c05621' : '#c53030'
-              }}>
-                {result.ssl.status === 'ready' ? result.ssl.grade : '...'}
-              </div>
-            </div>
-          </div>
+<div style={{
+  padding: '16px', borderRadius: '12px', marginBottom: '16px',
+  background: '#f0f4ff', border: '1px solid #a3bffa'
+}}>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div>
+      <div style={{ fontWeight: '600', color: '#333' }}>🔒 Certificat SSL</div>
+      <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
+        {result.ssl.status === 'ready'
+          ? `Grade ${result.ssl.grade} · expire dans ${result.ssl.daysLeft} jours`
+          : 'Non détecté'}
+      </div>
+    </div>
+    <div style={{
+      fontSize: '28px', fontWeight: '700',
+      color: result.ssl.grade === 'A' ? '#276749' : result.ssl.grade === 'B' ? '#c05621' : '#c53030'
+    }}>
+      {result.ssl.grade}
+    </div>
+  </div>
+</div>
 
           {/* Score headers */}
           <div style={{
