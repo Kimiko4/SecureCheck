@@ -69,7 +69,7 @@ function App() {
           {/* Score global */}
           <div style={{
             padding: '16px', borderRadius: '12px', marginBottom: '16px',
-            background: '#1a1a2e', border: 'none', textAlign: 'center'
+            background: '#1a1a2e', textAlign: 'center'
           }}>
             <div style={{ fontSize: '13px', color: '#aaa', marginBottom: '4px' }}>Score global de sécurité</div>
             <div style={{ fontSize: '42px', fontWeight: '700', color: '#fff' }}>
@@ -77,30 +77,30 @@ function App() {
             </div>
           </div>
 
-          {/* Score SSL */}
-<div style={{
-  padding: '16px', borderRadius: '12px', marginBottom: '16px',
-  background: '#f0f4ff', border: '1px solid #a3bffa'
-}}>
-  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-    <div>
-      <div style={{ fontWeight: '600', color: '#333' }}>🔒 Certificat SSL</div>
-      <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
-        {result.ssl.status === 'ready'
-          ? `Grade ${result.ssl.grade} · expire dans ${result.ssl.daysLeft} jours`
-          : 'Non détecté'}
-      </div>
-    </div>
-    <div style={{
-      fontSize: '28px', fontWeight: '700',
-      color: result.ssl.grade === 'A' ? '#276749' : result.ssl.grade === 'B' ? '#c05621' : '#c53030'
-    }}>
-      {result.ssl.grade}
-    </div>
-  </div>
-</div>
+          {/* SSL */}
+          <div style={{
+            padding: '16px', borderRadius: '12px', marginBottom: '16px',
+            background: '#f0f4ff', border: '1px solid #a3bffa'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <div style={{ fontWeight: '600', color: '#333' }}>🔒 Certificat SSL</div>
+                <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
+                  {result.ssl.status === 'ready'
+                    ? `Grade ${result.ssl.grade} · expire dans ${result.ssl.daysLeft} jours`
+                    : 'Non détecté'}
+                </div>
+              </div>
+              <div style={{
+                fontSize: '28px', fontWeight: '700',
+                color: result.ssl.grade === 'A' ? '#276749' : result.ssl.grade === 'B' ? '#c05621' : '#c53030'
+              }}>
+                {result.ssl.grade}
+              </div>
+            </div>
+          </div>
 
-          {/* Score headers */}
+          {/* Headers */}
           <div style={{
             padding: '24px', borderRadius: '12px', textAlign: 'center', marginBottom: '16px',
             background: result.headers.score >= 70 ? '#f0fff4' : result.headers.score >= 40 ? '#fffbeb' : '#fff5f5',
@@ -135,6 +135,39 @@ function App() {
               </div>
             ))}
           </div>
+
+          {/* Recommandations */}
+          {result.recommendations.length > 0 && (
+            <div style={{ marginTop: '16px' }}>
+              <h2 style={{ fontSize: '16px', fontWeight: '600', color: '#333', marginBottom: '12px' }}>
+                ⚠️ Recommandations ({result.recommendations.length})
+              </h2>
+              {result.recommendations.map((rec, i) => (
+                <div key={i} style={{
+                  background: '#fff', borderRadius: '12px', padding: '16px',
+                  marginBottom: '10px', border: '1px solid #eee',
+                  borderLeft: `4px solid ${rec.priority === 'haute' ? '#fc8181' : rec.priority === 'moyenne' ? '#f6ad55' : '#68d391'}`
+                }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
+                    <span style={{ fontFamily: 'monospace', fontSize: '13px', fontWeight: '600', color: '#333' }}>
+                      {rec.header}
+                    </span>
+                    <span style={{
+                      fontSize: '11px', fontWeight: '600', padding: '2px 8px', borderRadius: '99px',
+                      background: rec.priority === 'haute' ? '#fff5f5' : rec.priority === 'moyenne' ? '#fffbeb' : '#f0fff4',
+                      color: rec.priority === 'haute' ? '#c53030' : rec.priority === 'moyenne' ? '#c05621' : '#276749'
+                    }}>
+                      {rec.priority}
+                    </span>
+                  </div>
+                  <p style={{ fontSize: '13px', color: '#666', marginBottom: '8px' }}>{rec.description}</p>
+                  <p style={{ fontSize: '12px', color: '#444', background: '#f9f9f9', padding: '8px', borderRadius: '6px', fontFamily: 'monospace' }}>
+                    💡 {rec.fix}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
 
         </div>
       )}
