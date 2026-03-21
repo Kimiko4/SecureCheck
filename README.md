@@ -1,6 +1,6 @@
 # SecureCheck
 
-Outil d'audit de sécurité web — analyse SSL, headers HTTP et recommandations concrètes.
+Outil d'audit de sécurité web - analyse SSL, headers HTTP et recommandations concrètes.
 
 ---
 
@@ -21,7 +21,7 @@ Outil d'audit de sécurité web — analyse SSL, headers HTTP et recommandations
 
 ## Fonctionnalités
 
-SecureCheck vérifie la présence des headers de sécurité HTTP essentiels — `Content-Security-Policy`, `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` et `Permissions-Policy` — et calcule un score sur 100. Il récupère également les informations du certificat SSL du domaine analysé : grade (A, B, C…), date d'expiration et nombre de jours restants. L'ensemble est synthétisé dans un score global de sécurité, complété par une liste de recommandations priorisées (haute, moyenne, faible) incluant une description du risque et une correction prête à l'emploi.
+SecureCheck vérifie la présence des headers de sécurité HTTP essentiels - `Content-Security-Policy`, `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` et `Permissions-Policy` - et calcule un score sur 100. Il récupère également les informations du certificat SSL du domaine analysé : grade (A, B, C…), date d'expiration et nombre de jours restants. L'ensemble est synthétisé dans un score global de sécurité, complété par une liste de recommandations priorisées (haute, moyenne, faible) incluant une description du risque et une correction prête à l'emploi.
 
 ---
 
@@ -58,4 +58,4 @@ Ouvrir [http://localhost:5173](http://localhost:5173) dans le navigateur.
 
 ## Auteur
 
-Kimy LAOU — [LinkedIn](https://www.linkedin.com/in/kimy-laou/) · [GitHub](https://github.com/Kimiko4)
+Kimy LAOU - [LinkedIn](https://www.linkedin.com/in/kimy-laou/) · [GitHub](https://github.com/Kimiko4)
