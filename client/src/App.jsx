@@ -64,11 +64,79 @@ function App() {
       )}
 
       {result && (
-        <div style={{ marginTop: '24px', padding: '20px', background: '#f9f9f9', borderRadius: '8px' }}>
-          <p style={{ color: '#333' }}>✅ Requête reçue pour : <strong>{result.url}</strong></p>
-          <p style={{ color: '#888', fontSize: '14px' }}>Les vrais résultats arrivent à l'étape suivante.</p>
+        <div style={{ marginTop: '24px' }}>
+
+          {/* Score global */}
+          <div style={{
+            padding: '16px', borderRadius: '12px', marginBottom: '16px',
+            background: '#1a1a2e', border: 'none', textAlign: 'center'
+          }}>
+            <div style={{ fontSize: '13px', color: '#aaa', marginBottom: '4px' }}>Score global de sécurité</div>
+            <div style={{ fontSize: '42px', fontWeight: '700', color: '#fff' }}>
+              {result.globalScore}%
+            </div>
+          </div>
+
+          {/* Score SSL */}
+          <div style={{
+            padding: '16px', borderRadius: '12px', marginBottom: '16px',
+            background: '#f0f4ff', border: '1px solid #a3bffa'
+          }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div>
+                <div style={{ fontWeight: '600', color: '#333' }}>🔒 Certificat SSL</div>
+                <div style={{ fontSize: '13px', color: '#666', marginTop: '4px' }}>
+                  {result.ssl.status === 'pending' ? 'Analyse en cours...' : `Grade : ${result.ssl.grade}`}
+                </div>
+              </div>
+              <div style={{
+                fontSize: '28px', fontWeight: '700',
+                color: result.ssl.score >= 70 ? '#276749' : result.ssl.score >= 40 ? '#c05621' : '#c53030'
+              }}>
+                {result.ssl.status === 'ready' ? result.ssl.grade : '...'}
+              </div>
+            </div>
+          </div>
+
+          {/* Score headers */}
+          <div style={{
+            padding: '24px', borderRadius: '12px', textAlign: 'center', marginBottom: '16px',
+            background: result.headers.score >= 70 ? '#f0fff4' : result.headers.score >= 40 ? '#fffbeb' : '#fff5f5',
+            border: `2px solid ${result.headers.score >= 70 ? '#68d391' : result.headers.score >= 40 ? '#f6ad55' : '#fc8181'}`
+          }}>
+            <div style={{ fontSize: '14px', color: '#666', marginBottom: '8px' }}>🛡️ Headers HTTP</div>
+            <div style={{ fontSize: '48px', fontWeight: '700',
+              color: result.headers.score >= 70 ? '#276749' : result.headers.score >= 40 ? '#c05621' : '#c53030'
+            }}>
+              {result.headers.score}%
+            </div>
+            <div style={{ fontSize: '14px', color: '#666', marginTop: '4px' }}>
+              {result.headers.passed} / {result.headers.total} headers présents
+            </div>
+          </div>
+
+          {/* Détail headers */}
+          <div style={{ background: '#fff', borderRadius: '12px', overflow: 'hidden', border: '1px solid #eee' }}>
+            {Object.entries(result.headers.checks).map(([header, present]) => (
+              <div key={header} style={{
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                padding: '12px 16px', borderBottom: '1px solid #f0f0f0'
+              }}>
+                <span style={{ fontSize: '14px', fontFamily: 'monospace', color: '#333' }}>{header}</span>
+                <span style={{
+                  fontSize: '12px', fontWeight: '600', padding: '2px 10px', borderRadius: '99px',
+                  background: present ? '#f0fff4' : '#fff5f5',
+                  color: present ? '#276749' : '#c53030'
+                }}>
+                  {present ? '✓ présent' : '✗ manquant'}
+                </span>
+              </div>
+            ))}
+          </div>
+
         </div>
       )}
+
     </div>
   )
 }
