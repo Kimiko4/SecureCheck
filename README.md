@@ -1,6 +1,6 @@
 # SecureCheck
 
-Outil d'audit de sécurité web — analyse SSL, headers HTTP et recommandations concrètes.
+Outil d'audit de sécurité web - analyse SSL, headers HTTP et recommandations concrètes.
 
 ---
 
