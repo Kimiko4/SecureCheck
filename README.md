@@ -1,106 +1,61 @@
-# 🔍 SecureCheck
+# SecureCheck
 
-![Status](https://img.shields.io/badge/status-live-brightgreen?style=flat-square)
-![Version](https://img.shields.io/badge/version-1.0.0-7c3aed?style=flat-square)
-![React](https://img.shields.io/badge/React-19-61dafb?style=flat-square&logo=react)
-![Node](https://img.shields.io/badge/Node.js-Express-339933?style=flat-square&logo=node.js)
-
-**Auditez la sécurité de n'importe quel site web en quelques secondes.**
-SecureCheck analyse les headers HTTP, le certificat SSL et génère des recommandations concrètes pour renforcer la sécurité d'un domaine.
+Outil d'audit de sécurité web — analyse SSL, headers HTTP et recommandations concrètes.
 
 ---
 
-## 📸 Aperçu
-
-![SecureCheck screenshot](https://via.placeholder.com/880x500/0d0d1a/7c3aed?text=SecureCheck+–+remplacer+par+un+vrai+screenshot)
-
-> ⚠️ Remplacez ce lien par un vrai screenshot de l'application.
-
----
-
-## ✨ Fonctionnalités
-
-### 🛡️ Analyse des Headers HTTP
-Vérifie la présence des headers de sécurité critiques (`Content-Security-Policy`, `X-Frame-Options`, `Strict-Transport-Security`, etc.) et calcule un score sur 100.
-
-### 🔒 Certificat SSL
-Récupère le grade du certificat, la date d'expiration et le nombre de jours restants avant renouvellement.
-
-### 💡 Recommandations personnalisées
-Pour chaque header manquant, SecureCheck génère une explication claire et une correction prête à copier-coller, classée par priorité (haute / moyenne / faible).
+<table>
+  <tr>
+    <td align="center">
+      <img src="client/src/img/interface.png" alt="Interface principale" width="420" /><br/>
+      <sub>Interface principale</sub>
+    </td>
+    <td align="center">
+      <img src="client/src/img/recommendations.png" alt="Recommandations détaillées" width="420" /><br/>
+      <sub>Recommandations détaillées</sub>
+    </td>
+  </tr>
+</table>
 
 ---
 
-## 🧰 Stack technique
+## Fonctionnalités
 
-| Couche     | Technologie                          |
-|------------|--------------------------------------|
-| Frontend   | React 19, Vite                       |
-| Backend    | Node.js, Express 5                   |
-| SSL        | [`ssl-checker`](https://www.npmjs.com/package/ssl-checker) |
-| HTTP       | Axios                                |
-| Style      | CSS custom properties, Google Fonts  |
+SecureCheck vérifie la présence des headers de sécurité HTTP essentiels — `Content-Security-Policy`, `Strict-Transport-Security`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy` et `Permissions-Policy` — et calcule un score sur 100. Il récupère également les informations du certificat SSL du domaine analysé : grade (A, B, C…), date d'expiration et nombre de jours restants. L'ensemble est synthétisé dans un score global de sécurité, complété par une liste de recommandations priorisées (haute, moyenne, faible) incluant une description du risque et une correction prête à l'emploi.
 
 ---
 
-## 🚀 Lancer le projet en local
+## Stack
 
-### Prérequis
-- Node.js ≥ 18
-- npm ≥ 9
+| Couche   | Technologie                    |
+|----------|--------------------------------|
+| Frontend | React 19, Vite                 |
+| Backend  | Node.js, Express 5             |
+| SSL      | ssl-checker                    |
+| HTTP     | Axios                          |
 
-### 1. Cloner le dépôt
+---
+
+## Lancer en local
+
+**Prérequis :** Node.js >= 18
 
 ```bash
-git clone https://github.com/Kimiko4/securecheck.git
-cd securecheck
-```
-
-### 2. Démarrer le serveur (port 5000)
-
-```bash
+# Serveur (port 5000)
 cd server
 npm install
 npm run dev
-```
 
-### 3. Démarrer le client (port 5173)
-
-```bash
+# Client (port 5173)
 cd client
 npm install
 npm run dev
 ```
 
-### 4. Ouvrir dans le navigateur
-
-```
-http://localhost:5173
-```
+Ouvrir [http://localhost:5173](http://localhost:5173) dans le navigateur.
 
 ---
 
-## 📁 Structure du projet
+## Auteur
 
-```
-securecheck/
-├── client/          # Frontend React + Vite
-│   └── src/
-│       ├── App.jsx
-│       └── index.css
-└── server/          # Backend Express
-    └── index.js
-```
-
----
-
-## 👤 Auteur
-
-**Kimy LAOU**
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Kimy_LAOU-0077b5?style=flat-square&logo=linkedin)](https://www.linkedin.com/in/kimy-laou/)
-[![GitHub](https://img.shields.io/badge/GitHub-Kimiko4-181717?style=flat-square&logo=github)](https://github.com/Kimiko4)
-
----
-
-*SecureCheck 2026*
+Kimy LAOU — [LinkedIn](https://www.linkedin.com/in/kimy-laou/) · [GitHub](https://github.com/Kimiko4)
