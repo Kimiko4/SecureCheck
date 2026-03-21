@@ -46,7 +46,7 @@ const analyzeSSL = async (url) => {
     const daysLeft = data.daysRemaining
     const valid = data.valid
     let grade = 'F', score = 0
-    if (valid && daysLeft > 60)     { grade = 'A'; score = 90 }
+    if (valid && daysLeft > 60)      { grade = 'A'; score = 90 }
     else if (valid && daysLeft > 30) { grade = 'B'; score = 70 }
     else if (valid && daysLeft > 0)  { grade = 'C'; score = 50 }
     return { status: 'ready', grade, score, daysLeft, valid }
@@ -92,6 +92,19 @@ app.post('/api/analyze', async (req, res) => {
   let { url } = req.body
   if (!url) return res.status(400).json({ error: 'URL manquante' })
   if (!url.startsWith('http')) url = 'https://' + url
+
+  // Validation URL
+  try {
+    new URL(url)
+  } catch {
+    return res.status(400).json({ error: 'URL invalide' })
+  }
+
+  // Vérifie que c'est un vrai domaine
+  const hostname = new URL(url).hostname
+  if (!hostname.includes('.')) {
+    return res.status(400).json({ error: 'Domaine invalide — exemple : google.com' })
+  }
 
   try {
     const [headers, ssl] = await Promise.all([
