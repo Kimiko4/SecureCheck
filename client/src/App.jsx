@@ -75,7 +75,7 @@ function App() {
             <span className="logo-text">SecureCheck</span>
           </div>
           <div className="header-right">
-            <span className="by-text">by <span className="by-name">Kimy LAOU</span></span>
+            <span className="by-text">par <span className="by-name">Kimy LAOU</span></span>
             <div className="social-links">
               <a
                 href="https://www.linkedin.com/in/kimy-laou/"
@@ -280,7 +280,7 @@ function App() {
 
       {/* ── Footer ── */}
       <footer className="footer">
-        Built by <span className="footer-name">Kimy LAOU</span> · SecureCheck 2025
+        Réalisé par <span className="footer-name">Kimy LAOU</span> · SecureCheck 2026
       </footer>
 
     </div>
