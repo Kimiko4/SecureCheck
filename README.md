@@ -8,6 +8,7 @@
 **Auditez la sécurité de n'importe quel site web en quelques secondes.**  
 SecureCheck analyse les headers HTTP, le certificat SSL et génère des recommandations concrètes pour renforcer la sécurité d'un domaine.
 
+> Projet personnel développé en dehors de ma formation en cybersécurité à l'EFREI Paris (label SecNumEdu ANSSI), en appliquant les concepts vus en stage chez DigitalCube (pentest, OWASP Top 10) et à l'AP-HP (développement sécurisé).
 ---
 
 ## 📸 Aperçu
