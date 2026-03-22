@@ -14,7 +14,8 @@ SecureCheck analyse les headers HTTP, le certificat SSL et génère des recomman
 
 ## 📸 Aperçu
 
-![SecureCheck screenshot](https://via.placeholder.com/880x500/0d0d1a/7c3aed?text=SecureCheck+–+remplacer+par+un+vrai+screenshot)
+<img width="1753" height="938" alt="interface" src="https://github.com/user-attachments/assets/c9ee1b5b-f82f-44e9-9ddb-59dca40478e1" />
+<img width="1737" height="906" alt="recommendations" src="https://github.com/user-attachments/assets/03653e8c-584f-46a3-b28f-cc3b8be27d01" />
 
 ---
 
